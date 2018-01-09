@@ -140,3 +140,28 @@ tests = {'NYC': (1, 0, 'Friday'),
 
 for city in tests:
     assert time_of_trip(example_trips[city], city) == tests[city]
+    
+def type_of_user(datum, city):
+    """
+    Takes as input a dictionary containing info about a single trip (datum) and
+    its origin city (city) and returns the type of system user that made the
+    trip.
+    
+    Remember that Washington has different category names compared to Chicago
+    and NYC. 
+    """
+    
+    # YOUR CODE HERE
+    
+    return user_type
+
+
+# Some tests to check that your code works. There should be no output if all of
+# the assertions pass. The `example_trips` dictionary was obtained from when
+# you printed the first trip from each of the original data files.
+tests = {'NYC': 'Customer',
+         'Chicago': 'Subscriber',
+         'Washington': 'Subscriber'}
+
+for city in tests:
+    assert type_of_user(example_trips[city], city) == tests[city]
