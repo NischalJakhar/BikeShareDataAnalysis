@@ -77,3 +77,63 @@ tests = {'NYC': 13.9833,
 
 for city in tests:
     assert abs(duration_in_mins(example_trips[city], city) - tests[city]) < .001
+    
+ def time_of_trip(datum, city):
+    """
+    Takes as input a dictionary containing info about a single trip (datum) and
+    its origin city (city) and returns the month, hour, and day of the week in
+    which the trip was made.
+    
+    Remember that NYC includes seconds, while Washington and Chicago do not.
+    
+    HINT: You should use the datetime module to parse the original date
+    strings into a format that is useful for extracting the desired information.
+    see https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
+    """
+    
+    # YOUR CODE HERE
+        if city == 'NYC':
+
+        stoptime = datetime.strptime(datum['stoptime'], '%m/%d/%Y %H:%M:%S')
+        starttime = datetime.strptime(datum['starttime'], '%m/%d/%Y %H:%M:%S')
+        diff = stoptime - starttime
+        hour = int((diff.total_seconds()) / (60**2))
+        month = starttime.month
+        day = starttime.day
+        day_of_week_int = calendar.weekday(starttime.year, month, day)
+        day_of_week = calendar.day_name[day_of_week_int]
+
+    elif city == "Chicago":
+        stoptime = datetime.strptime(datum['stoptime'], '%m/%d/%Y %H:%M')
+        starttime = datetime.strptime(datum['starttime'], '%m/%d/%Y %H:%M')
+        diff = stoptime - starttime
+        hour = int((diff.total_seconds()) / (60 ** 2))
+        month = starttime.month
+        day = starttime.day
+        day_of_week_int = calendar.weekday(starttime.year, month, day)
+        day_of_week = calendar.day_name[day_of_week_int]
+
+    else:
+        stoptime = datetime.strptime(datum['End date'], '%m/%d/%Y %H:%M')
+        starttime = datetime.strptime(datum['Start date'], '%m/%d/%Y %H:%M')
+        diff = stoptime - starttime
+        hour = int((diff.total_seconds()) / (60 ** 2))
+        month = starttime.month
+        day = starttime.day
+        day_of_week_int = calendar.weekday(starttime.year, month, day)
+        day_of_week = calendar.day_name[day_of_week_int]
+        
+        
+    
+    return (month, hour, day_of_week)
+
+
+# Some tests to check that your code works. There should be no output if all of
+# the assertions pass. The `example_trips` dictionary was obtained from when
+# you printed the first trip from each of the original data files.
+tests = {'NYC': (1, 0, 'Friday'),
+         'Chicago': (3, 23, 'Thursday'),
+         'Washington': (3, 22, 'Thursday')}
+
+for city in tests:
+    assert time_of_trip(example_trips[city], city) == tests[city]
