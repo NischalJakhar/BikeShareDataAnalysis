@@ -92,12 +92,13 @@ for city in tests:
     """
     
     # YOUR CODE HERE
-        if city == 'NYC':
+    if city == 'NYC':
 
         stoptime = datetime.strptime(datum['stoptime'], '%m/%d/%Y %H:%M:%S')
         starttime = datetime.strptime(datum['starttime'], '%m/%d/%Y %H:%M:%S')
-        diff = stoptime - starttime
-        hour = int((diff.total_seconds()) / (60**2))
+        #diff = stoptime - starttime
+        #hour = int((diff.total_seconds()) / (60**2))
+        hour = starttime.hour
         month = starttime.month
         day = starttime.day
         day_of_week_int = calendar.weekday(starttime.year, month, day)
@@ -106,8 +107,9 @@ for city in tests:
     elif city == "Chicago":
         stoptime = datetime.strptime(datum['stoptime'], '%m/%d/%Y %H:%M')
         starttime = datetime.strptime(datum['starttime'], '%m/%d/%Y %H:%M')
-        diff = stoptime - starttime
-        hour = int((diff.total_seconds()) / (60 ** 2))
+        #diff = stoptime - starttime
+        #hour = int((diff.total_seconds()) / (60 ** 2))
+        hour = starttime.hour
         month = starttime.month
         day = starttime.day
         day_of_week_int = calendar.weekday(starttime.year, month, day)
@@ -116,8 +118,9 @@ for city in tests:
     else:
         stoptime = datetime.strptime(datum['End date'], '%m/%d/%Y %H:%M')
         starttime = datetime.strptime(datum['Start date'], '%m/%d/%Y %H:%M')
-        diff = stoptime - starttime
-        hour = int((diff.total_seconds()) / (60 ** 2))
+        #diff = stoptime - starttime
+        #hour = int((diff.total_seconds()) / (60 ** 2))
+        hour = starttime.hour
         month = starttime.month
         day = starttime.day
         day_of_week_int = calendar.weekday(starttime.year, month, day)
