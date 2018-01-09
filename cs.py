@@ -63,8 +63,7 @@ def duration_in_mins(datum, city):
         duration = float(datum['Duration (ms)']) / (60 * 1000)
     elif city == "NYC" or "Chicago":
         duration = float(datum['tripduration']) / 60
-    print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
-    print(duration)
+    
 
     return duration
 
