@@ -213,3 +213,15 @@ def condense_data(in_file, out_file, city):
             ## TODO: write the processed information to the output file.     ##
             ## see https://docs.python.org/3/library/csv.html#writer-objects ##
             trip_writer.writerow(new_point)
+            
+# Run this cell to check your work
+city_info = {'Washington': {'in_file': './data/Washington-CapitalBikeshare-2016.csv',
+                            'out_file': './data/Washington-2016-Summary.csv'},
+             'Chicago': {'in_file': './data/Chicago-Divvy-2016.csv',
+                         'out_file': './data/Chicago-2016-Summary.csv'},
+             'NYC': {'in_file': './data/NYC-CitiBike-2016.csv',
+                     'out_file': './data/NYC-2016-Summary.csv'}}
+
+for city, filenames in city_info.items():
+    condense_data(filenames['in_file'], filenames['out_file'], city)
+    print_first_point(filenames['out_file'])
