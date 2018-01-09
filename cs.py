@@ -42,3 +42,39 @@ example_trips = {}
 for data_file in data_files:
     city, first_trip = print_first_point(data_file)
     example_trips[city] = first_trip
+    
+    
+def duration_in_mins(datum, city):
+    """
+    Takes as input a dictionary containing info about a single trip (datum) and
+    its origin city (city) and returns the trip duration in units of minutes.
+
+    Remember that Washington is in terms of milliseconds while Chicago and NYC
+    are in terms of seconds.
+
+    HINT: The csv module reads in all of the data as strings, including numeric
+    values. You will need a function to convert the strings into an appropriate
+    numeric type when making your transformations.
+    see https://docs.python.org/3/library/functions.html
+    """
+
+    # YOUR CODE HERE
+    if city == "Washington":
+        duration = float(datum['Duration (ms)']) / (60 * 1000)
+    elif city == "NYC" or "Chicago":
+        duration = float(datum['tripduration']) / 60
+    print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+    print(duration)
+
+    return duration
+
+
+# Some tests to check that your code works. There should be no output if all of
+# the assertions pass. The `example_trips` dictionary was obtained from when
+# you printed the first trip from each of the original data files.
+tests = {'NYC': 13.9833,
+         'Chicago': 15.4333,
+         'Washington': 7.1231}
+
+for city in tests:
+    assert abs(duration_in_mins(example_trips[city], city) - tests[city]) < .001
