@@ -152,6 +152,12 @@ def type_of_user(datum, city):
     """
     
     # YOUR CODE HERE
+    if city == "NYC" or "Chicago":
+        user_type = datum['usertype']
+    else:
+        user_type = datum['Member Type']
+
+    return user_type
     
     return user_type
 
