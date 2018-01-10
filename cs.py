@@ -401,3 +401,34 @@ plt.xlabel('Duration (m)')
 plt.show()
 
 
+## Use this and additional cells to answer Question 5. ##
+import matplotlib.pyplot as plt
+
+%matplotlib inline 
+
+def get_data(filename):
+    
+    with open(filename, 'r') as f_in:
+        reader = csv.DictReader(f_in)
+        
+        data_subscriber = []
+        data_customer = []
+        
+        for row in reader:
+            if row['user_type'] == "Customer":
+                data_customer.append(float(row['duration']))
+            else:
+                data_subscriber.append(float(row['duration']))
+                
+            
+        
+        return data_customer, data_subscriber
+data_customer, data_subscriber = get_data('./data/Washington-2016-Summary.csv')
+
+bins = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75]
+plt.hist(data_subscriber,bins,histtype='bar',rwidth=0.8)
+plt.title('Distribution of Trip Durations')
+plt.xlabel('Duration (m)')
+plt.show()
+
+
