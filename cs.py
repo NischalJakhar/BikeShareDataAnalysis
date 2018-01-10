@@ -262,3 +262,30 @@ def number_of_trips(filename):
 #data_file = './examples/BayArea-Y3-Summary.csv'
 data_file = './data/NYC-2016-Summary.csv'
 print(number_of_trips(data_file))
+
+#**Question 4b**: Bike-share systems are designed for riders to take short trips. Most of the time, users are allowed to take trips of 30 minutes or less with no additional charges, with overage charges made for trips of longer than that duration. What is the average trip length for each city? What proportion of rides made in each city are longer than 30 minutes?
+
+##**Answer**: **Average trip length for each city are following:**
+
+
+##1._Washington_ : 18 minutes
+
+
+##2._NYC_ : 15 minutes
+
+
+##3._Chicago_ : 16 minutes
+
+
+##**Proportion of rides in each city longer than 30 minutes are following:**
+
+
+##1._Washington_ : 10.84%
+
+
+#2._NYC_ : 7.3%
+
+
+##3._Chicago_ : 8.33%
+
+
