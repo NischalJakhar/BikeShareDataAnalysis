@@ -256,3 +256,9 @@ def number_of_trips(filename):
         return(n_subscribers, n_customers, n_total)
    
 
+## Modify this and the previous cell to answer Question 4a. Remember to run ##
+## the function on the cleaned data files you created from Question 3.      ##
+
+#data_file = './examples/BayArea-Y3-Summary.csv'
+data_file = './data/NYC-2016-Summary.csv'
+print(number_of_trips(data_file))
