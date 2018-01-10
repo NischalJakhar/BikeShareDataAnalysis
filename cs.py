@@ -376,3 +376,28 @@ total_trip_done = number_of_trips(filename)
 
 print(subscriber_duration/total_trip_done[0])
 print(customer_duration/total_trip_done[1])
+
+## Use this and additional cells to collect all of the trip times as a list ##
+## and then use pyplot functions to generate a histogram of trip times.     ##
+import matplotlib.pyplot as plt
+
+%matplotlib inline 
+
+def get_data(filename):
+    
+    with open(filename, 'r') as f_in:
+        reader = csv.DictReader(f_in)
+        
+        data = []
+        
+        for row in reader:
+            data.append(float(row['duration']))
+        
+        return data
+data = get_data('./data/Washington-2016-Summary.csv')
+plt.hist(data)
+plt.title('Distribution of Trip Durations')
+plt.xlabel('Duration (m)')
+plt.show()
+
+
