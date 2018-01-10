@@ -432,3 +432,40 @@ plt.xlabel('Duration (m)')
 plt.show()
 
 
+## Use this and additional cells to continue to explore the dataset. ##
+## Once you have performed your exploration, document your findings  ##
+## in the Markdown cell above. 
+import matplotlib.pyplot as plt
+
+%matplotlib inline 
+
+def what_day_popular(filename):
+    
+    with open(filename, 'r') as f_in:
+        reader = csv.DictReader(f_in)
+        
+        my_dict_cust = {'Monday':0,'Tuesday':0,'Wednesday':0,'Thursday':0,'Friday':0,'Saturday':0,'Sunday':0}
+        my_dict_subs = {'Monday':0,'Tuesday':0,'Wednesday':0,'Thursday':0,'Friday':0,'Saturday':0,'Sunday':0}
+        for row in reader:
+            if row['user_type'] == "Subscriber":
+                my_dict_subs[row['day_of_week']]+=1
+            else:
+                my_dict_cust[row['day_of_week']]+=1
+                
+        return my_dict_cust,my_dict_subs
+    
+my_dict_cust,my_dict_subs = what_day_popular('./data/Washington-2016-Summary.csv')        
+print(my_dict_cust)
+print(my_dict_subs)
+
+
+plt.bar(my_dict_cust.keys(),my_dict_cust.values())
+plt.title('Distribution of Trip Days')
+plt.xlabel('Days of week')
+plt.ylabel('Number')
+plt.show()
+
+
+
+
+
