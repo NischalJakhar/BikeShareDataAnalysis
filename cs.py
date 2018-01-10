@@ -289,3 +289,46 @@ print(number_of_trips(data_file))
 ##3._Chicago_ : 8.33%
 
 
+## Use this and additional cells to answer Question 4b.                 ##
+##                                                                      ##
+## HINT: The csv module reads in all of the data as strings, including  ##
+## numeric values. You will need a function to convert the strings      ##
+## into an appropriate numeric type before you aggregate data.          ##
+## TIP: For the Bay Area example, the average trip length is 14 minutes ##
+## and 3.5% of trips are longer than 30 minutes.                        ##
+def average_trip_length(filename):
+    """
+    This function reads the file and answers the average
+    trip length of a city and the proportion of rides > 30 minutes.
+    
+    filename : input file
+    """
+    with open(filename, 'r') as f_in:
+        reader = csv.DictReader(f_in)
+        
+        #Calculates total number of trips and gets value from tuple returned 
+        number_of_trip = number_of_trips(filename)[2]
+        
+        #record the total duration sum
+        duration_sum = 0
+        
+        #records number of rides greater than 30 minutes
+        no_of_rides_larger_thirty = 0
+        
+        for row in reader:
+            if float(row['duration'])>30:
+                no_of_rides_larger_thirty +=1
+                
+            duration_sum += float(row['duration'])
+        
+        return int(duration_sum/number_of_trip), no_of_rides_larger_thirty, number_of_trip
+    
+#Let' call the function with a file
+avg,thirty,total_trip = average_trip_length('./data/Chicago-2016-Summary.csv')
+
+#Total proportion in % calculated
+proportion = (thirty*100)/total_trip
+
+#Print values 
+print(proportion)
+print(avg)
