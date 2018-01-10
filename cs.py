@@ -332,3 +332,47 @@ proportion = (thirty*100)/total_trip
 #Print values 
 print(proportion)
 print(avg)
+
+## Use this and additional cells to answer Question 4c. If you have    ##
+## not done so yet, consider revising some of your previous code to    ##
+## make use of functions for reusability.                              ##
+##                                                                     ##
+## TIP: For the Bay Area example data, you should find the average     ##
+## Subscriber trip duration to be 9.5 minutes and the average Customer ##
+## trip duration to be 54.6 minutes. Do the other cities have this     ##
+## level of difference? 
+
+def long_avg_rides_users(filename):
+    """
+    Calculates the average time by customer/Subscriber
+    
+    """
+    
+    with open(filename, 'r') as f_in:
+        reader = csv.DictReader(f_in)
+        
+        customer_duration = 0
+        subscriber_duration = 0
+        
+        
+        for row in reader:
+            
+            if row['user_type'] == "Customer":
+                customer_duration +=float(row['duration'])
+            else:
+                subscriber_duration +=float(row['duration'])
+              
+                
+        return customer_duration, subscriber_duration
+        
+        
+filename = './data/NYC-2016-Summary.csv'
+
+#Calling the function
+customer_duration, subscriber_duration = long_avg_rides_users(filename)
+
+#Called number_of_trips method defined previously
+total_trip_done = number_of_trips(filename)
+
+print(subscriber_duration/total_trip_done[0])
+print(customer_duration/total_trip_done[1])
